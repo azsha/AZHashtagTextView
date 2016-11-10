@@ -1,4 +1,6 @@
 # AZHashTextView
+- When you touch a hashtag in TextView, an event has occurred.
+
 ## Requirements
 - Swift 3
 - Xcode 8
@@ -10,7 +12,6 @@
 - Input viewDidload().
 
 ```swift
-//input viewDidload()
 yourTextView.resolveHashTags()
 yourTextView.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.red]
 yourTextView.isScrollEnabled = false
