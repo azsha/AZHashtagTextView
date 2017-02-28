@@ -30,7 +30,16 @@ class ViewController: UIViewController, UITextViewDelegate {
     func textView(_ textView: UITextView, shouldInteractWith url: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
         if let URL = url.scheme {
             let arrId = Int(URL)
-            print(hashtagArr?[arrId!] as Any)
+            
+            let alertController = UIAlertController(title: "AZHashtagTextViewExample", message: "\(hashtagArr![arrId!])", preferredStyle: .alert)
+            let okBtn = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+                UIAlertAction in
+                alertController.dismiss(animated: true, completion: nil)
+            }
+            alertController.addAction(okBtn)
+            
+            self.present(alertController, animated: true, completion: nil)
+
         }
         return false
     }
