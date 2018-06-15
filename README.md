@@ -10,13 +10,18 @@
 - Just drag AZHashTextView.swift to the project tree
 
 ## Usage
+```swift
+var myTextView: AZHashtagTextView!
+
+```
+
 - Input viewDidload().
 
 ```swift
-yourTextView.resolveHashTags()
-yourTextView.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.red]
-yourTextView.isScrollEnabled = false
-yourTextView.delegate = self
+myTextView.delegate = self
+myTextView.resolveHashTags()
+
+
 ```
 
 - Add TextView Delegate.
@@ -27,10 +32,11 @@ class ViewController: UIViewController, UITextViewDelegate {...}
 - Add TextView Touch Delegate.
 ```swift
 func textView(_ textView: UITextView, shouldInteractWith url: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-    if let URL = url.scheme {
-        let arrId = Int(URL)
-        print(hashtagArr?[arrId!] as Any)
-    }
+
+if let aztextView = textView as? AZHashtagTextView {
+if let URL = url.scheme {
+    // Touch Event
+}
     return false
 }
 ```
