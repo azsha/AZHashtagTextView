@@ -17,28 +17,28 @@ class ViewController: UIViewController, UITextViewDelegate {
         
         myTextView.delegate = self
         
+        // Search HashTags
         myTextView.resolveHashTags()
-        myTextView.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.red]
+        myTextView.linkTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.red]
     }
 
     func textView(_ textView: UITextView, shouldInteractWith url: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        guard let aztextView = textView as? AZHashtagTextView  else { return false }
+        guard let URL = url.scheme else { return false }
+        let arrId = Int(URL)
         
-        if let aztextView = textView as? AZHashtagTextView {
-            if let URL = url.scheme {
-                let arrId = Int(URL)
-                
-                let alertController = UIAlertController(title: "AZHashtagTextViewExample", message: "\(aztextView.hashtagArr![arrId!])", preferredStyle: .alert)
-                let okBtn = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
-                    UIAlertAction in
-                    alertController.dismiss(animated: true, completion: nil)
-                }
-                alertController.addAction(okBtn)
-                
-                self.present(alertController, animated: true, completion: nil)
-                
-            }
+        let alertController = UIAlertController(title: "AZHashtagTextViewExample",
+                                                message: "\(aztextView.hashtagArr![arrId!])",
+                                                preferredStyle: .alert)
+        
+        let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) { UIAlertAction in
+            alertController.dismiss(animated: true, completion: nil)
         }
-        return false
+        alertController.addAction(okButton)
+        
+        self.present(alertController, animated: true, completion: nil)
+        
+        return true
     }
 }
 
