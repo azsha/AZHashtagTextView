@@ -1,4 +1,4 @@
-# AZHashTextView
+# AZHashTextView (Legacy)
 <img src="image/sample.png" width="160"/>
 - When you touch a hashtag in TextView, an event has occurred.
 
